@@ -31,7 +31,7 @@ pub async fn get_secret(namespace: &str, secret: &str) -> Result<KubernetesSecre
             continue;
         } else {
             target_secret.secret_name = s.name_any();
-        }
+        
 
     // if let Some(data) = &s.data {
     //     for (key, value) in data {
@@ -63,11 +63,12 @@ pub async fn get_secret(namespace: &str, secret: &str) -> Result<KubernetesSecre
         }
         
         // println!("{:?}", data)
+        return Ok(target_secret)}
     }
     }
 
     // println!("{:x?}", target_secret);
-    Ok(target_secret)
+    Err("Secret not found".into())
 }
 
 #[tokio::main]

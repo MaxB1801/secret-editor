@@ -20,7 +20,7 @@ fn main() {
     let mut found_secret = match gather_secret::get_secret(&namespace, &secret) {
         Ok(secret) => secret,
         Err(e) => {
-            eprintln!("Error getting secret - Secret does not exist: {}", e);
+            eprintln!("Error getting secret - Secret might not exist: {}", e);
             return;
         }
     };
