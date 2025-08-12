@@ -58,7 +58,15 @@ fn load_editor(path: PathBuf) -> Result<(), Box<dyn std::error::Error>> {
     let display = path.display();
 
     // Load the editor from the environment variable or use a default
-    let editor = env::var("EDITOR").unwrap_or_else(|_| "vim".to_string());
+    let editor = env::var("EDITOR")
+        .or_else(|_| env::var("VISUAL"))
+        .unwrap_or_else(|_| {
+            if cfg!(windows) {
+                "notepad".to_string()
+            } else {
+                "vim".to_string()
+            }
+    });
 
     // Run the editor command with the file path as argument
     let status = std::process::Command::new(editor)
