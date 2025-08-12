@@ -67,7 +67,6 @@ To use the `cs` command from any directory, add the binary to your system PATH:
 
 - **Linux binary**: `cs` (executable)
 - **Windows binary**: `cs.exe`
-- Both binaries are compiled with `cargo build` (no source code included)
 
 ##  How It Works
 
